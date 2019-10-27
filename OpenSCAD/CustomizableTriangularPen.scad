@@ -9,7 +9,7 @@ Pen_Count = 1;
 // Pen body height in millimeters (increase this if you are using long text)
 Pen_Height = 80; //70
 // Printing vertically is slower but good for high volume of pens with less warping.  Printing horizontally is faster and lets you change the filament colors mid print for high contrast on the face 1 text.
-Orientation = "Horizontal"; // [Vertical:Vertical,Horizontal:Horizontal]
+Orientation = "Vertical"; // [Vertical:Vertical,Horizontal:Horizontal]
 // Text depth in millimeters
 Text_Depth = .5;
 // Text font size
@@ -62,7 +62,8 @@ for(x =[0:Pen_Count-1])
 		//rotate so each face can be seen when previewing 5 or more
 		rotate ([0,0,x*60]) 
 		//make a pen
-		PenBarrel();
+		//PenBarrel();
+        PenCap();
 	} else {
 		//space out the pens
 		translate([x*(FaceWidth) + x,0,Cy])
