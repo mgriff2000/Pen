@@ -1,5 +1,5 @@
 // Text for the first face of the triangular pen body
-Face_1_Text = "R2";
+Face_1_Text = "R3";
 // Text for the second face of the triangular pen body
 Face_2_Text = "";
 // Text for the third face of the triangular pen body
@@ -63,8 +63,8 @@ for(x =[0:Pen_Count-1])
 		//rotate so each face can be seen when previewing 5 or more
 		rotate ([0,0,x*60]) 
 		//make a pen
-		PenBarrel();
-        //PenCap();
+		//PenBarrel();
+        PenCap();
         
 	} else {
 		//space out the pens
@@ -99,7 +99,7 @@ module PenBarrel()
 			translate([0,0, Pen_Height])
 			rotate ([0,180,0])
 			union(){
-				cylinder(h = 60, d1 = Ink_Tip_Diameter+2, d2 = FaceWidth+1, $fs = CircumferentialLength );
+				cylinder(h = 60, d1 = Ink_Tip_Diameter+6, d2 = FaceWidth+1, $fs = CircumferentialLength );
 				translate([0,0, 60])
 				cylinder(h = Pen_Height, d = FaceWidth+1, $fs = CircumferentialLength);
 			}
@@ -136,6 +136,7 @@ module PenBarrel()
 			}		
 		}		
 		InkStick();
+        cylinder(h = FaceWidth/8, d = FaceWidth,$fs = CircumferentialLength); // cut off the bottom so it can be 3D printed. 
 	}
 }
 
@@ -159,6 +160,7 @@ module FaceTextExtrude(FaceText)
 
 module PenCap() 
 {
+    difference(){
 		intersection(){
             
 
@@ -182,6 +184,9 @@ module PenCap()
 			}
             
 		}
+    cylinder(h = (capP2x+1)/8, d = capP2x+1,$fs = CircumferentialLength); // cut off the bottom so it can be 3D printed. 
+    }
+        
 
 	
 }
